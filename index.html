@@ -314,7 +314,7 @@ if(msg.value){grow();dsend.disabled=msg.value.trim().length<10}
 msg.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){e.preventDefault();$('#rf').requestSubmit()}});
 $('#rf').addEventListener('submit',async e=>{e.preventDefault();if(msg.value.trim().length<10||$('#honey').value)return;
  dsend.disabled=true;dstat.dataset.s='1';dstat.textContent='Enviando…';
- try{const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({message:msg.value.trim(),_subject:'novo depoimento (ftdnc)',_captcha:'false',_template:'box'})});
+ try{const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({message:msg.value.trim(),_subject:'[FITDANCE] novo depoimento (ftdnc)',_captcha:'false',_template:'box'})});
   const j=await r.json().catch(()=>({}));
   if(!r.ok||j.success==='false')throw Error(j.message||'erro');
   msg.value='';try{localStorage.removeItem('fdb-draft')}catch{}grow();dstat.className='chatnote mono ok';dstat.textContent='Enviado! Obrigada. Vai para análise, não aparece na hora.'}
